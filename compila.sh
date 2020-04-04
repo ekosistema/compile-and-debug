@@ -7,13 +7,15 @@ if [ $# -eq 1 ]
 
 then
 
+    asmfile=$1
+
     echo "Compiling..."
 
-    yasm -f elf64 -g dwarf2 $1.asm; gcc -no-pie -o $1 source_file $1.o
+    yasm -f elf64 -g dwarf2 $asmfile.asm; gcc -no-pie -o $asmfile source_file.c $asmfile.o 
 
     echo "Debugging..."
 
-    kdbg ./$1
+    kdbg ./$asmfile
 
 else
 
